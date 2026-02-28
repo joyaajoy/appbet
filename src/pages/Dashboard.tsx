@@ -79,7 +79,7 @@ const Dashboard: React.FC = () => {
 
                   <div className="flex flex-col items-center">
                     <span className="text-3xl sm:text-4xl font-bold text-slate-600">VS</span>
-                    <span className="text-sm text-slate-500 mt-1">Группа {selectedRound}</span>
+                    <span className="text-sm text-slate-500 mt-1">Тур {selectedRound}</span>
                   </div>
 
                   <div className="flex flex-col items-center">

@@ -203,8 +203,9 @@ const MatchDetail: React.FC = () => {
           <div className="space-y-4">
             {stats.map((stat, index) => {
               const Icon = stat.icon;
-              const homePercent = (stat.home / (stat.home + stat.away)) * 100;
-              const awayPercent = (stat.away / (stat.home + stat.away)) * 100;
+              const total = stat.home + stat.away;
+              const homePercent = total > 0 ? (stat.home / total) * 100 : 50;
+              const awayPercent = total > 0 ? (stat.away / total) * 100 : 50;
 
               return (
                 <div key={index}>

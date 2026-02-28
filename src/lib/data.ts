@@ -561,7 +561,7 @@ export const teams: Team[] = [
     injuredPlayers: []
   },
   {
-    id: ' PSV',
+    id: 'psv',
     name: 'PSV Eindhoven',
     shortName: 'PSV',
     logo: 'https://upload.wikimedia.org/wikipedia/commons/4/44/PSV_Eindhoven_logo.svg',
@@ -703,10 +703,12 @@ export const generateStandings = (): Standing[] => {
   // Generate random but realistic standings
   const standings: Standing[] = teams.slice(0, 36).map((team, index) => {
     const played = Math.floor(Math.random() * 8);
-    const points = Math.floor(played * (3 - index * 0.08)) + Math.floor(Math.random() * 3);
-    const won = Math.floor(points / 3);
-    const drawn = points % 3;
+    const rawPoints = Math.floor(played * (3 - index * 0.08)) + Math.floor(Math.random() * 3);
+    const clampedPoints = Math.max(0, Math.min(rawPoints, played * 3));
+    const won = Math.min(Math.floor(clampedPoints / 3), played);
+    const drawn = Math.min(clampedPoints - won * 3, played - won);
     const lost = played - won - drawn;
+    const points = won * 3 + drawn;
     const goalsFor = won * 2 + drawn + Math.floor(Math.random() * 3);
     const goalsAgainst = lost + Math.floor(Math.random() * 2);
 
