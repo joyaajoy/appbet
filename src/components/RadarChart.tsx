@@ -9,7 +9,7 @@ interface TeamRadarChartProps {
 const TeamRadarChart: React.FC<TeamRadarChartProps> = ({ homeTeam, awayTeam }) => {
   const stats = [
     { label: 'Атака', home: (homeTeam.xG / 3) * 100, away: (awayTeam.xG / 3) * 100 },
-    { label: 'Защита', home: (1 - awayTeam.xGA / 3) * 100, away: (1 - homeTeam.xGA / 3) * 100 },
+    { label: 'Защита', home: (1 - homeTeam.xGA / 3) * 100, away: (1 - awayTeam.xGA / 3) * 100 },
     { label: 'Контроль', home: homeTeam.possession, away: awayTeam.possession },
     { label: 'Форма', home: calculateFormPercentage(homeTeam.form), away: calculateFormPercentage(awayTeam.form) },
     { label: 'Удары', home: (homeTeam.shotsOnTarget / 10) * 100, away: (awayTeam.shotsOnTarget / 10) * 100 },
